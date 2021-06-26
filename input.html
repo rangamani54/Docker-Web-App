@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ex Docker WebApp</title>
+<style>
+    .box{
+        position: absolute;
+        top: 0%;
+        left: 25%;
+        color:black;
+        width: 50%;
+        background:url("37V7.gif");
+        padding: 0px;
+        text-align: center;
+        font-style: italic;
+        font-size: x-large;
+    }
+    
+    .box1{
+        position: absolute;
+        top: 90px;
+        left: 750%;
+        height:550px;
+        color:brown;
+        width: 1000%;
+        background-color:deepskyblue;
+        text-align: center;
+        font-style:normal;
+        font-size: x-large;
+        box-sizing: content-box;
+        align-content:center;
+        overflow:scroll;
+    }
+
+
+    .box2{
+        position: absolute;
+        top: 90px;
+        left: 10%;
+        height:550px;
+        color: #fff;
+        width: 700%;
+        background-image: url("./dockerr.jpg");
+        text-align: center;
+        font-style: italic;
+        font-size: x-large;
+    }
+
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+
+
+
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: absolute;
+  left: 1%;
+  top:7%;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow:auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+body {
+                background: url("37V7.gif");
+              }
+
+
+.button {
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background: darkcyan;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer;
+  position:relative;
+}
+
+.button1 {background-color: #4CAF50;} /* Green */
+.button2 {background-color: deepskyblue;}
+</style>
+<body>
+
+
+
+   
+</style>
+</head>
+<body>
+        <div class="box">
+        <h1>Docker web app</h1>
+    </div>
+        <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">Actions</button>
+              <div id="myDropdown" class="dropdown-content">
+                <a onclick="dr3()">Start service</a>
+                <a onclick="dr4()">Stop service</a>
+                <a onclick="dr5()">Status of service</a>
+                <a onclick="dr6()">List all running containers</a>
+                <a onclick="dr7()">List all Images</a>
+                <a onclick="dr8()">Launch container</a>
+                <a onclick="dr9()">Remove the running container</a>
+                <a onclick="dr10()">Stop the firewall</a>
+                <a onclick="dr11()">Turn off SELinux</a>
+                <a onclick="dr12()">List all running and excited containers</a>
+                <a onclick="dr13()">Pull image</a>
+                <a onclick="dr14()">Remove image</a>
+                <a onclick="dr15()">Start the container</a>
+                <a onclick="dr16()">Stop the container</a>
+                <a onclick="dr17()">Attach the container</a>
+
+              </div>
+
+
+
+            <script>
+                /* When the user clicks on the button, 
+                toggle between hiding and showing the dropdown content */
+                function myFunction() {
+                  document.getElementById("myDropdown").classList.toggle("show");
+                }
+                
+                // Close the dropdown if the user clicks outside of it
+                window.onclick = function(event) {
+                  if (!event.target.matches('.dropbtn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                      var openDropdown = dropdowns[i];
+                      if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                      }
+                    }
+                  }
+                }
+                </script>
+
+        <div class="box1">
+            <h1>
+                Output
+            </h1>
+
+            <pre>
+                <div id ="d1">Here you have the output</div>
+            </pre>
+        
+        </div>  
+        
+        <div class="box2">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <label for="Command">Enter the command:</label>
+        <input type="search" id="command" name="q"
+       aria-label="Processing command">
+        </br>
+    </br>
+    <br>
+</br>
+<br>
+
+<br>
+<br>
+<br>
+<button onclick= "dr()" class="button button1">Submit</button>
+<button onclick= "dr2()" class="button button2">Clear</button>
+</br>
+</br>
+</br>
+</div>
+        
+        
+        <script>
+                function dr() {
+                    var i = document.getElementById("command").value
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "http://192.168.43.57/cgi-bin/mainapp.py?x=" + i,true);
+                    xhr.send();
+                    xhr.onload = function()    {
+                        var output = xhr.responseText;
+                        
+                        document.getElementById("d1").innerHTML = output;
+                        document.getElementById("command").value = "";
+                    }
+                         }
+            </script>
+    
+                      
+          <script>
+              function dr2() {
+                document.getElementById("d1").innerHTML = " ";
+              }
+
+             function dr3() {
+                     document.getElementById("command").value = "systemctl start docker";
+              }
+
+            function dr4() {
+                     document.getElementById("command").value = "systemctl stop docker";
+            }
+                    
+            function dr5() {
+                     document.getElementById("command").value = "systemctl status docker";
+            }
+            
+            function dr6() {
+                 document.getElementById("command").value = "docker ps";
+            }
+
+            function dr7() {
+                 document.getElementById("command").value = "docker images";
+            }
+
+            function dr8() {
+                var container_name = prompt("Please enter Container name","");
+                var container_image = prompt("Please Enter Image","");
+                document.getElementById("command").value = "docker run -dit --name " + container_name + " " + container_image;
+            }
+
+            function dr9() {
+                var container_name = prompt("Please enter Container name","");
+                document.getElementById("command").value = "docker rm -f " + container_name;
+            }
+
+            function dr10() {
+                document.getElementById("command").value = "systemctl stop firewalld";
+            }
+            
+            function dr11() {
+                document.getElementById("command").value = "setenforce 0";
+            }
+
+            function dr12() {
+                document.getElementById("command").value = "docker ps -a";
+            }
+
+            function dr13() {
+                var image_name = prompt("Please Enter Image name","");
+                document.getElementById("command").value = "docker pull " + image_name;
+            }
+            function dr14() {
+                var image_name = prompt("Please Enter Image name","");
+                document.getElementById("command").value = "docker rmi " + image_name;
+            }
+            function dr15() {
+                var container_name = prompt("Please enter Container name","");
+                document.getElementById("command").value = "docker start " + container_name; 
+            }
+
+            function dr16() {
+                var container_name = prompt("Please enter Container name","");
+                document.getElementById("command").value = "docker stop " + container_name;
+            }
+
+            function dr17() {
+                var container_name = prompt("Please enter Container name","");
+                document.getElementById("command").value = "docker attach " + container_name;
+            }
+            </script>
+                      
+
+
+
+</body>
+</html>
+
+
